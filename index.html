@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumia Autofix — Autokorjaamo Metsälässä</title>
+    <meta
+      name="description"
+      content="Pieni ammattitaitoinen autokorjaamo Metsälässä. Huollot, korjaukset ja katsastuspalvelut kaikille automerkeille. Asesepänkuja 2, Helsinki."
+    />
+    <meta name="theme-color" content="#EEF2F5" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <header class="site-header" id="top">
+      <div class="header-inner">
+        <a class="logo" href="#top">Lumia Autofix</a>
+
+        <nav class="nav" aria-label="Päävalikko">
+          <a href="#palvelut" data-section="palvelut">Palvelut</a>
+          <a href="#merkit" data-section="merkit">Automerkit</a>
+          <a href="#meista" data-section="meista">Meistä</a>
+          <a href="#arvostelut" data-section="arvostelut">Arvostelut</a>
+          <a href="#yhteys" data-section="yhteys">Yhteys</a>
+        </nav>
+
+        <div class="header-actions">
+          <a class="header-phone" href="tel:+358443619777">044 361 9777</a>
+          <a class="nav-cta" href="#yhteys">Varaa aika</a>
+        </div>
+
+        <button class="menu-btn" type="button" aria-label="Avaa valikko" aria-expanded="false">
+          <i></i><i></i>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-stage">
+          <div class="hero-bg" aria-hidden="true">
+            <img
+              class="hero-img"
+              src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?auto=format&fit=crop&w=2400&q=88"
+              alt=""
+              width="2400"
+              height="1600"
+            />
+          </div>
+          <div class="hero-veil" aria-hidden="true"></div>
+        </div>
+
+        <div class="hero-inner">
+          <p class="hero-brand">
+            <span class="line"><span>Lumia</span></span>
+            <span class="line sub"><span>Autofix</span></span>
+          </p>
+          <h1 class="line"><span>Pieni ammattitaitoinen autokorjaamo Metsälässä.</span></h1>
+          <p class="hero-text line">
+            <span
+              >Autosi korjataan vastuullisesti — ympäristöä, valmistajan ohjeita
+              ja viranomaisten määräyksiä kunnioittaen.</span
+            >
+          </p>
+          <div class="hero-cta line">
+            <span class="cta-wrap">
+              <a class="cta cta-solid" href="#yhteys"><span>Ota yhteyttä</span></a>
+              <a class="cta cta-ghost" href="tel:+358443619777"><span>044 361 9777</span></a>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="palvelut">
+        <div class="shell">
+          <header class="section-intro">
+            <p class="kicker"><span>01</span> Palvelut</p>
+            <h2>Kaikki mitä auto tarvitsee — yhdeltä luukulta.</h2>
+            <p class="lede">
+              Merkkiriippumatonta korjaamo-osaamista. Kerro tarpeesi, me hoidamme
+              loput huolellisesti.
+            </p>
+          </header>
+          <ul class="service-grid" id="services-list"></ul>
+          <button class="services-toggle" id="services-toggle" type="button" hidden>
+            Näytä kaikki palvelut
+          </button>
+        </div>
+      </section>
+
+      <section class="section section-soft">
+        <div class="shell">
+          <div class="surface quote-panel">
+            <p class="kicker"><span>02</span> Periaate</p>
+            <blockquote>
+              Valitsemalla Lumia Autofixin voit luottaa, että työ tehdään
+              vastuullisesti — ympäristöä, valmistajan ohjeita ja viranomaisten
+              määräyksiä kunnioittaen.
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="merkit">
+        <div class="shell">
+          <header class="section-intro">
+            <p class="kicker"><span>03</span> Automerkit</p>
+            <h2>Huollamme kaikki automerkit.</h2>
+            <p class="lede">
+              Arjen liikkujista erikoisempiin malleihin — sama tarkkuus joka
+              autoon.
+            </p>
+          </header>
+          <div
+            class="marquee surface"
+            id="brand-marquee"
+            role="presentation"
+            aria-label="Automerkkejä joita huollamme"
+          ></div>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="meista">
+        <div class="shell about-layout">
+          <header class="section-intro">
+            <p class="kicker"><span>04</span> Meistä</p>
+            <h2>Pieni korjaamo.<br />Iso huolellisuus.</h2>
+            <p class="lede">
+              Lumia Autofix on ammattitaitoinen autokorjaamo Helsingin
+              Metsälässä. Teemme työn oikein — ilman turhaa hälyä.
+            </p>
+          </header>
+
+          <ul class="facts surface">
+            <li class="is-key">
+              <span>Sijainti</span>
+              <strong>Asesepänkuja 2, 00620 Helsinki</strong>
+            </li>
+            <li class="is-key">
+              <span>Aukiolo</span>
+              <strong>Ma–Pe 8:30–17:00 · La 11:00–15:00</strong>
+            </li>
+            <li class="is-key">
+              <span>Takuu</span>
+              <strong>12 kk tai 10 000 km</strong>
+            </li>
+            <li class="is-key">
+              <span>AutoJerry</span>
+              <strong>4,7 · 158 arvostelua</strong>
+            </li>
+            <li>
+              <span>Yritys</span>
+              <strong>Fixbest Oy · 3459468-7</strong>
+            </li>
+          </ul>
+
+          <ul class="perks">
+            <li class="surface">
+              <strong>Varaosat</strong>
+              <span>Alkuperäiset, vastaavat, tarvike — myös asiakkaan tuomat</span>
+            </li>
+            <li class="surface">
+              <strong>Mukavuus</strong>
+              <span>Hinaus, katsastus, odotustilat ja langaton verkko</span>
+            </li>
+            <li class="surface">
+              <strong>Maksutavat</strong>
+              <span>Käteinen, kortti, MobilePay tai lasku</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section" id="arvostelut">
+        <div class="shell">
+          <div class="reviews-head">
+            <header class="section-intro">
+              <p class="kicker"><span>05</span> Arvostelut</p>
+              <h2>Asiakkaiden kokemuksia.</h2>
+              <p class="lede">Poimintoja Google-arvosteluista — kiitos luottamuksesta.</p>
+            </header>
+
+            <aside class="reviews-score surface" aria-label="Google-arvosana">
+              <div class="reviews-score-main">
+                <strong>4,2</strong>
+                <span class="star-row" aria-label="4,2 tähteä viidestä">
+                  <i></i><i></i><i></i><i></i><i class="is-half"></i>
+                </span>
+              </div>
+              <p>12 arvostelua · Google</p>
+              <div class="reviews-actions">
+                <a
+                  class="reviews-link"
+                  href="https://www.google.com/search?q=Lumia+Autofix+Helsinki+arvostelut"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Katso kaikki arvostelut</a
+                >
+                <a
+                  class="cta cta-solid reviews-cta"
+                  href="https://www.google.com/maps/search/?api=1&query=Lumia+Autofix,+Asesep%C3%A4nkuja+2,+Helsinki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  ><span>Jätä arvostelu</span></a
+                >
+              </div>
+            </aside>
+          </div>
+
+          <div class="reviews-featured">
+            <article class="review review-feature">
+              <span class="review-mark" aria-hidden="true">“</span>
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Aivan mielettömän hyvä aspa ja työn jälki. Tuonut useaan otteeseen
+                auton, näkevät vaivaa, tekevät extraa ja hintalaatusuhde mitä
+                parhain. Ei voi vaan kun suositella.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </article>
+
+            <article class="review review-feature">
+              <span class="review-mark" aria-hidden="true">“</span>
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Poikkeuksellisen asiantuntevaa ja intohimoista palvelua hyvään
+                hintaan. Saattaa olla etten tarvitse enää Autojerryä, vaan
+                kohdistan jatkossa asiointini Lumia Autofixille.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </article>
+          </div>
+
+          <ul class="reviews-grid">
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Hyvä asiakaspalvelu, annettu hinta-arvio piti ja huolto tuli
+                tehtyä annetussa ajassa.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Ammattitaitoinen autokorjaamo. Hintalaatusuhde kohdillaan ja oli
+                mukava asioida.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Hommat hoituu niinkun pitääkin. Ystävällinen palvelu.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Hyvä hinta-laatusuhde. He ovat korjanneet autoni nyt kahdesti, ja
+                aion käyttää heitä jatkossakin.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>
+                Hyvä. Annettu hinta piti paikkansa. Vähän vanhempi ranskalainen
+                tuli korjattua.
+              </blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>Hinta-arvio piti, hyvä palvelu.</blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+            <li class="review">
+              <div class="star-row" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+              <blockquote>Hyvä palvelu.</blockquote>
+              <p class="review-source">Google-arvostelu</p>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section section-soft" id="yhteys">
+        <div class="shell contact-shell">
+          <div class="contact-copy">
+            <header class="section-intro">
+              <p class="kicker"><span>06</span> Yhteys</p>
+              <h2>Varaa aika.<br />Aloitetaan siitä.</h2>
+              <p class="lede">
+                Tervetuloa Asesepänkujaan. Kerro mitä auto tarvitsee — palaamme
+                asiaan nopeasti.
+              </p>
+            </header>
+
+            <address class="contact-block surface">
+              <p class="is-key">
+                <span>Puhelin</span>
+                <a class="phone-link" href="tel:+358443619777">044 361 9777</a>
+              </p>
+              <p class="is-key">
+                <span>Osoite</span>
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=Asesep%C3%A4nkuja+2,+00620+Helsinki"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Asesepänkuja 2<br />00620 Helsinki</a
+                >
+              </p>
+              <p class="is-key">
+                <span>Aukioloajat</span>
+                <strong
+                  >Ma–Pe 8:30–17:00<br />
+                  La 11:00–15:00<br />
+                  Su suljettu</strong
+                >
+              </p>
+              <p>
+                <span>AutoJerry</span>
+                <a
+                  href="https://autojerry.fi/autokorjaamo/helsinki/lumiaautofix-oy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Pyydä tarjous tai varaa aika</a
+                >
+              </p>
+            </address>
+          </div>
+
+          <form class="contact-form surface" id="contact-form" novalidate>
+            <p class="form-title">Lähetä viesti</p>
+            <div class="form-row">
+              <label>
+                Nimi
+                <input name="name" type="text" required autocomplete="name" />
+              </label>
+              <label>
+                Puhelin
+                <input name="phone" type="tel" required autocomplete="tel" />
+              </label>
+            </div>
+            <label>
+              Sähköposti
+              <input name="email" type="email" required autocomplete="email" />
+            </label>
+            <label>
+              Viesti
+              <textarea
+                name="message"
+                rows="5"
+                required
+                placeholder="Auton merkki, malli ja tarvittava työ…"
+              ></textarea>
+            </label>
+            <button class="cta cta-solid" type="submit"><span>Lähetä viesti</span></button>
+          </form>
+
+          <div class="map-panel surface">
+            <div class="map-panel-bar">
+              <div>
+                <span>Sijainti kartalla</span>
+                <strong>Asesepänkuja 2, 00620 Helsinki</strong>
+              </div>
+              <a
+                class="map-panel-link"
+                href="https://www.google.com/maps/search/?api=1&query=Asesep%C3%A4nkuja+2,+00620+Helsinki"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Avaa Google Mapsissa</a
+              >
+            </div>
+            <div class="map-frame">
+              <iframe
+                title="Lumia Autofix kartalla — Asesepänkuja 2, Helsinki"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=24.935%2C60.218%2C24.946%2C60.223&layer=mapnik&marker=60.220564%2C24.940637"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a class="footer-logo" href="#top">Lumia Autofix</a>
+          <p>Asesepänkuja 2, 00620 Helsinki</p>
+        </div>
+        <div class="footer-meta">
+          <a href="tel:+358443619777">044 361 9777</a>
+          <p>© <span id="year"></span> Fixbest Oy · Y-tunnus 3459468-7</p>
+        </div>
+        <a class="footer-top" href="#top">Takaisin ylös</a>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
