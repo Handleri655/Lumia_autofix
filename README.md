@@ -2,19 +2,39 @@
 
 Nettisivut yritykselle Lumia Autofix (Fixbest Oy) — pieni ammattitaitoinen autokorjaamo Metsälässä.
 
-## Käynnistys
+Sivusto näyttää **suuntaa antavat palveluhinnat** ja **tarjoukset** SQLite-tietokannasta. Asiakas voi muokata niitä admin-portaalissa (`/admin`).
+
+## Käynnistys (kehitys)
 
 ```bash
 npm install
+cp .env.example .env   # Windows: copy .env.example .env
+npm run seed
 npm run dev
 ```
 
-Tuotantoversio:
+- Julkinen sivu: http://127.0.0.1:5173/
+- Admin: http://127.0.0.1:5173/admin/
+- API: http://127.0.0.1:3001/
+
+Oletussalasana on `.env`-tiedoston `ADMIN_PASSWORD` (esim. `vaihda-tama`).
+
+## Tuotanto
 
 ```bash
 npm run build
-npm run preview
+npm start
 ```
+
+Palvelin tarjoilee buildatun sivuston, adminin ja API:n samasta portista (`PORT`, oletus 3001). Tietokanta: `data/lumia.db`.
+
+## Admin
+
+1. Avaa `/admin`
+2. Kirjaudu salasanalla
+3. **Tarjoukset:** lisää / muokkaa / piilota / poista — näkyvät sivulla ennen palveluita
+4. **Palveluhinnat:** muokkaa vapaatekstiä (esim. `Alk. 89 €`, `Pyydä tarjous`)
+5. Tallenna — muutokset näkyvät heti julkisella sivulla
 
 ## Huomio
 

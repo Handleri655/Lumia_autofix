@@ -1,33 +1,133 @@
-const SERVICES = [
-  "Akku",
-  "Hinauspalvelu",
-  "Huolto",
-  "Ilmastointi",
-  "Jakohihna",
-  "Jarrut",
-  "Jousitus ja iskunvaimentimet",
-  "Katsastus",
-  "Katsastushuolto",
-  "Katsastuskorjaus",
-  "Kori- ja vauriokorjaus",
-  "Kytkin",
-  "Laakerit ja akselisto",
-  "Lisävarusteet",
-  "Lohkolämmitin",
-  "Moottori",
-  "Muu työ",
-  "Nelipyöräsuuntaus",
-  "Ohjaus",
-  "Öljynvaihto",
-  "Pakoputkisto",
-  "Renkaat",
-  "Ruostekorjaus",
-  "Ruostesuojaus",
-  "Sähkötyöt",
-  "Valot",
-  "Vianhaku",
-  "Vikakoodien luku",
-];
+const CONTACT_EMAIL = "info@lumiaautofix.fi";
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const SERVICES_PREVIEW = 12;
+
+async function fetchServices() {
+  try {
+    const res = await fetch("/api/services");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data.services) ? data.services : [];
+  } catch (err) {
+    console.error("Palveluiden lataus epäonnistui:", err);
+    return [];
+  }
+}
+
+async function fetchOffers() {
+  try {
+    const res = await fetch("/api/offers");
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+    return Array.isArray(data.offers) ? data.offers : [];
+  } catch (err) {
+    console.error("Tarjousten lataus epäonnistui:", err);
+    return [];
+  }
+}
+
+async function fillOffers() {
+  const section = document.getElementById("tarjoukset");
+  const el = document.getElementById("offers-list");
+  const navLink = document.querySelector('.nav a[data-section="tarjoukset"]');
+  if (!section || !el) return;
+
+  const offers = await fetchOffers();
+  el.replaceChildren();
+
+  if (!offers.length) {
+    section.hidden = true;
+    if (navLink) navLink.hidden = true;
+    return;
+  }
+
+  section.hidden = false;
+  if (navLink) navLink.hidden = false;
+
+  const frag = document.createDocumentFragment();
+  for (const offer of offers) {
+    const article = document.createElement("article");
+    article.className = "offer-card surface";
+
+    const title = document.createElement("h3");
+    title.textContent = offer.title;
+
+    article.appendChild(title);
+
+    if (offer.priceText) {
+      const price = document.createElement("p");
+      price.className = "offer-price";
+      price.textContent = offer.priceText;
+      article.appendChild(price);
+    }
+
+    if (offer.description) {
+      const desc = document.createElement("p");
+      desc.className = "offer-desc";
+      desc.textContent = offer.description;
+      article.appendChild(desc);
+    }
+
+    const cta = document.createElement("a");
+    cta.className = "offer-link";
+    cta.href = "#yhteys";
+    cta.textContent = "Kysy tarjouksesta";
+    article.appendChild(cta);
+
+    frag.appendChild(article);
+  }
+  el.appendChild(frag);
+}
+
+async function fillServices() {
+  const el = document.getElementById("services-list");
+  const toggle = document.getElementById("services-toggle");
+  if (!el) return;
+
+  const services = await fetchServices();
+  el.replaceChildren();
+
+  if (!services.length) {
+    const li = document.createElement("li");
+    li.className = "service-empty";
+    li.textContent = "Palveluita ei voitu ladata juuri nyt.";
+    el.appendChild(li);
+    if (toggle) toggle.hidden = true;
+    return;
+  }
+
+  const frag = document.createDocumentFragment();
+  services.forEach((item, index) => {
+    const li = document.createElement("li");
+    if (index >= SERVICES_PREVIEW) li.classList.add("is-extra");
+
+    const name = document.createElement("span");
+    name.className = "service-name";
+    name.textContent = item.name;
+
+    const price = document.createElement("span");
+    price.className = "service-price";
+    price.textContent = item.priceText || "Pyydä tarjous";
+
+    li.append(name, price);
+    frag.appendChild(li);
+  });
+  el.appendChild(frag);
+
+  if (!toggle || services.length <= SERVICES_PREVIEW) {
+    if (toggle) toggle.hidden = true;
+    return;
+  }
+
+  toggle.hidden = false;
+  el.classList.add("is-collapsed");
+
+  toggle.addEventListener("click", () => {
+    const collapsed = el.classList.toggle("is-collapsed");
+    toggle.textContent = collapsed ? "Näytä kaikki palvelut" : "Näytä vähemmän";
+  });
+}
 
 const BRANDS = [
   "Alfa Romeo",
@@ -112,36 +212,6 @@ const BRANDS = [
   "Voyah",
 ];
 
-const CONTACT_EMAIL = "info@lumiaautofix.fi";
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-const SERVICES_PREVIEW = 12;
-
-function fillServices() {
-  const el = document.getElementById("services-list");
-  const toggle = document.getElementById("services-toggle");
-  if (!el) return;
-
-  const frag = document.createDocumentFragment();
-  SERVICES.forEach((item, index) => {
-    const li = document.createElement("li");
-    li.textContent = item;
-    if (index >= SERVICES_PREVIEW) li.classList.add("is-extra");
-    frag.appendChild(li);
-  });
-  el.appendChild(frag);
-
-  if (!toggle || SERVICES.length <= SERVICES_PREVIEW) return;
-
-  toggle.hidden = false;
-  el.classList.add("is-collapsed");
-
-  toggle.addEventListener("click", () => {
-    const collapsed = el.classList.toggle("is-collapsed");
-    toggle.textContent = collapsed ? "Näytä kaikki palvelut" : "Näytä vähemmän";
-  });
-}
-
 function setupMarquee() {
   const host = document.getElementById("brand-marquee");
   if (!host) return;
@@ -209,6 +279,8 @@ function setupHeader() {
 
 function setupReveal() {
   const map = [
+    ["#tarjoukset .section-intro", ""],
+    [".offers-grid", "d1"],
     ["#palvelut .section-intro", ""],
     [".service-grid", "d1"],
     [".quote-panel", ""],
@@ -302,6 +374,7 @@ function setupContactForm() {
   });
 }
 
+fillOffers();
 fillServices();
 setupMarquee();
 setupHeader();

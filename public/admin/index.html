@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Admin — Lumia Autofix</title>
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Schibsted+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="top">
+        <div>
+          <p class="eyebrow">Lumia Autofix</p>
+          <h1>Hallinta</h1>
+        </div>
+        <div class="top-actions" id="top-actions" hidden>
+          <a class="link" href="/" target="_blank" rel="noopener">Avaa sivusto</a>
+          <button type="button" class="btn btn-ghost" id="logout-btn">Kirjaudu ulos</button>
+        </div>
+      </header>
+
+      <section class="panel" id="login-panel">
+        <h2>Kirjaudu</h2>
+        <p class="hint">
+          Muokkaa tarjouksia ja palveluhintoja. Muutokset näkyvät heti julkisella sivulla.
+        </p>
+        <form id="login-form">
+          <label>
+            Salasana
+            <input type="password" name="password" autocomplete="current-password" required />
+          </label>
+          <button class="btn btn-primary" type="submit">Kirjaudu sisään</button>
+          <p class="status" id="login-status" role="status"></p>
+        </form>
+      </section>
+
+      <div id="editor-panels" hidden>
+        <section class="panel">
+          <div class="editor-head">
+            <div>
+              <h2>Tarjoukset</h2>
+              <p class="hint">
+                Näkyvät sivulla ennen palveluita. Poista rivi tai piilota “Näytä”-valinnalla.
+              </p>
+            </div>
+            <div class="editor-actions">
+              <button class="btn btn-ghost" type="button" id="add-offer-btn">Lisää tarjous</button>
+              <button class="btn btn-primary" type="button" id="save-offers-btn">
+                Tallenna tarjoukset
+              </button>
+            </div>
+          </div>
+          <p class="status" id="offers-status" role="status"></p>
+          <div class="offers-editor" id="offers-editor"></div>
+        </section>
+
+        <section class="panel">
+          <div class="editor-head">
+            <div>
+              <h2>Palveluhinnat</h2>
+              <p class="hint">
+                Vapaateksti, esim. “Alk. 89 €”, “Pyydä tarjous” tai “Sopimuksen mukaan”.
+              </p>
+            </div>
+            <button class="btn btn-primary" type="button" id="save-btn">Tallenna hinnat</button>
+          </div>
+          <p class="status" id="save-status" role="status"></p>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Palvelu</th>
+                  <th>Hinta (suuntaa antava)</th>
+                </tr>
+              </thead>
+              <tbody id="services-body"></tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script type="module" src="./admin.js"></script>
+  </body>
+</html>

@@ -24,6 +24,7 @@
         <a class="logo" href="#top">Lumia Autofix</a>
 
         <nav class="nav" aria-label="Päävalikko">
+          <a href="#tarjoukset" data-section="tarjoukset">Tarjoukset</a>
           <a href="#palvelut" data-section="palvelut">Palvelut</a>
           <a href="#merkit" data-section="merkit">Automerkit</a>
           <a href="#meista" data-section="meista">Meistä</a>
@@ -78,10 +79,24 @@
         </div>
       </section>
 
+      <section class="section section-soft" id="tarjoukset" hidden>
+        <div class="shell">
+          <header class="section-intro">
+            <p class="kicker"><span>01</span> Tarjoukset</p>
+            <h2>Ajankohtaiset edut.</h2>
+            <p class="lede">
+              Poimintoja kampanjoista ja kausitarjouksista — kysy lisää tai varaa
+              aika.
+            </p>
+          </header>
+          <div class="offers-grid" id="offers-list"></div>
+        </div>
+      </section>
+
       <section class="section" id="palvelut">
         <div class="shell">
           <header class="section-intro">
-            <p class="kicker"><span>01</span> Palvelut</p>
+            <p class="kicker"><span>02</span> Palvelut</p>
             <h2>Kaikki mitä auto tarvitsee — yhdeltä luukulta.</h2>
             <p class="lede">
               Merkkiriippumatonta korjaamo-osaamista. Kerro tarpeesi, me hoidamme
@@ -89,6 +104,9 @@
             </p>
           </header>
           <ul class="service-grid" id="services-list"></ul>
+          <p class="services-note">
+            Hinnat suuntaa antavia. Lopullinen hinta sovitaan työn mukaan.
+          </p>
           <button class="services-toggle" id="services-toggle" type="button" hidden>
             Näytä kaikki palvelut
           </button>
@@ -98,7 +116,7 @@
       <section class="section section-soft">
         <div class="shell">
           <div class="surface quote-panel">
-            <p class="kicker"><span>02</span> Periaate</p>
+            <p class="kicker"><span>03</span> Periaate</p>
             <blockquote>
               Valitsemalla Lumia Autofixin voit luottaa, että työ tehdään
               vastuullisesti — ympäristöä, valmistajan ohjeita ja viranomaisten
@@ -111,7 +129,7 @@
       <section class="section" id="merkit">
         <div class="shell">
           <header class="section-intro">
-            <p class="kicker"><span>03</span> Automerkit</p>
+            <p class="kicker"><span>04</span> Automerkit</p>
             <h2>Huollamme kaikki automerkit.</h2>
             <p class="lede">
               Arjen liikkujista erikoisempiin malleihin — sama tarkkuus joka
@@ -130,7 +148,7 @@
       <section class="section section-soft" id="meista">
         <div class="shell about-layout">
           <header class="section-intro">
-            <p class="kicker"><span>04</span> Meistä</p>
+            <p class="kicker"><span>05</span> Meistä</p>
             <h2>Pieni korjaamo.<br />Iso huolellisuus.</h2>
             <p class="lede">
               Lumia Autofix on ammattitaitoinen autokorjaamo Helsingin
@@ -182,7 +200,7 @@
         <div class="shell">
           <div class="reviews-head">
             <header class="section-intro">
-              <p class="kicker"><span>05</span> Arvostelut</p>
+              <p class="kicker"><span>06</span> Arvostelut</p>
               <h2>Asiakkaiden kokemuksia.</h2>
               <p class="lede">Poimintoja Google-arvosteluista — kiitos luottamuksesta.</p>
             </header>
@@ -296,7 +314,7 @@
         <div class="shell contact-shell">
           <div class="contact-copy">
             <header class="section-intro">
-              <p class="kicker"><span>06</span> Yhteys</p>
+              <p class="kicker"><span>07</span> Yhteys</p>
               <h2>Varaa aika.<br />Aloitetaan siitä.</h2>
               <p class="lede">
                 Tervetuloa Asesepänkujaan. Kerro mitä auto tarvitsee — palaamme
@@ -403,7 +421,10 @@
           <a href="tel:+358443619777">044 361 9777</a>
           <p>© <span id="year"></span> Fixbest Oy · Y-tunnus 3459468-7</p>
         </div>
-        <a class="footer-top" href="#top">Takaisin ylös</a>
+        <div class="footer-links">
+          <a class="footer-top" href="#top">Takaisin ylös</a>
+          <a class="footer-admin" href="/admin/">Admin</a>
+        </div>
       </div>
     </footer>
 

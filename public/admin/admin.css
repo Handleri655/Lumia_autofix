@@ -1,0 +1,299 @@
+:root {
+  --ink: #0a0e12;
+  --mute: #6b7682;
+  --line: rgba(10, 14, 18, 0.12);
+  --band: #f4f7f9;
+  --signal: #6eb8e8;
+  --forest: #0f3b37;
+  --forest-soft: #1a5852;
+  --radius: 12px;
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Schibsted Grotesk", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--band);
+  line-height: 1.5;
+}
+
+.shell {
+  width: min(100%, 52rem);
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--forest-soft);
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: var(--font-display);
+  letter-spacing: -0.04em;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 750;
+}
+
+.top-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.35rem 1.4rem 1.5rem;
+}
+
+.hint {
+  margin: 0.55rem 0 1.1rem;
+  color: var(--mute);
+  font-size: 0.98rem;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+input[type="password"],
+input[type="text"] {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--band);
+  font: inherit;
+  color: var(--ink);
+}
+
+input:focus {
+  outline: 2px solid rgba(15, 59, 55, 0.25);
+  border-color: var(--forest-soft);
+  background: #fff;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.6rem;
+  padding: 0.55rem 1.1rem;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: var(--forest);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--forest-soft);
+}
+
+.btn-primary:disabled {
+  opacity: 0.55;
+  cursor: wait;
+}
+
+.btn-ghost {
+  background: #fff;
+  border-color: var(--line);
+  color: var(--ink);
+}
+
+.btn-ghost:hover {
+  border-color: var(--signal);
+}
+
+.link {
+  color: var(--forest);
+  font-weight: 650;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15, 59, 55, 0.3);
+}
+
+.status {
+  min-height: 1.25rem;
+  margin: 0.75rem 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.status.is-error {
+  color: #9b1c1c;
+}
+
+.status.is-ok {
+  color: var(--forest-soft);
+}
+
+.editor-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: start;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  margin-top: 0.75rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 0.75rem 0.35rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: middle;
+}
+
+th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+td.name {
+  font-weight: 650;
+  padding-right: 1rem;
+  white-space: nowrap;
+}
+
+td.price input {
+  min-width: 12rem;
+}
+
+#editor-panels[hidden] {
+  display: none !important;
+}
+
+#editor-panels:not([hidden]) {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.offers-editor {
+  display: grid;
+  gap: 1rem;
+  margin-top: 0.85rem;
+}
+
+.offer-edit {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--band);
+}
+
+.offer-edit-row {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.offer-edit label {
+  margin-bottom: 0;
+}
+
+.offer-edit textarea {
+  width: 100%;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  font: inherit;
+  color: var(--ink);
+  resize: vertical;
+}
+
+.offer-edit-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.check {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin: 0 !important;
+}
+
+.check input {
+  width: auto;
+}
+
+.btn-small {
+  min-height: 2.2rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+@media (min-width: 720px) {
+  .offer-edit-row {
+    grid-template-columns: 1.4fr 1fr;
+  }
+}
+

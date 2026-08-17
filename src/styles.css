@@ -530,6 +530,66 @@ textarea {
 
 /* Services */
 
+.offers-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.offer-card {
+  display: grid;
+  gap: 0.55rem;
+  padding: 1.35rem 1.35rem 1.25rem;
+  border-left: 4px solid var(--signal);
+}
+
+.offer-card h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 2.4vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.offer-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: var(--forest-soft);
+}
+
+.offer-desc {
+  margin: 0;
+  color: var(--mute);
+  font-size: 0.98rem;
+  max-width: 52ch;
+  white-space: pre-line;
+}
+
+.offer-link {
+  justify-self: start;
+  margin-top: 0.35rem;
+  font-weight: 650;
+  color: var(--forest);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(15, 59, 55, 0.3);
+  padding-bottom: 0.05rem;
+}
+
+.offer-link:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+}
+
+@media (min-width: 720px) {
+  .offers-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.15rem;
+  }
+}
+
 .service-grid {
   list-style: none;
   margin: 0;
@@ -540,13 +600,14 @@ textarea {
 }
 
 .service-grid li {
-  padding: 0.7rem 0.85rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1rem;
+  padding: 0.75rem 0.9rem;
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   background: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  letter-spacing: -0.015em;
   color: var(--ink);
   transition:
     border-color 0.25s var(--ease),
@@ -555,11 +616,39 @@ textarea {
 
 .service-grid li:hover {
   border-color: rgba(110, 184, 232, 0.55);
-  color: var(--forest);
+}
+
+.service-name {
+  font-size: 0.95rem;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+}
+
+.service-price {
+  flex: 0 0 auto;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--forest-soft);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.service-empty {
+  grid-column: 1 / -1;
+  justify-content: center;
+  color: var(--mute);
+  font-weight: 600;
 }
 
 .service-grid.is-collapsed .is-extra {
   display: none;
+}
+
+.services-note {
+  margin: 0.85rem 0 0;
+  color: var(--mute);
+  font-size: 0.92rem;
 }
 
 .services-toggle {
@@ -1128,11 +1217,28 @@ textarea {
   color: var(--forest);
 }
 
+.footer-links {
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+}
+
 .footer-top {
   font-weight: 650;
   text-decoration: none;
   color: var(--ink-2);
-  justify-self: start;
+}
+
+.footer-admin {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  color: rgba(107, 118, 130, 0.7);
+}
+
+.footer-admin:hover {
+  color: var(--mute);
 }
 
 @media (min-width: 720px) {
@@ -1142,8 +1248,8 @@ textarea {
     gap: 2rem;
   }
 
-  .footer-top {
-    justify-self: end;
+  .footer-links {
+    justify-items: end;
   }
 }
 
