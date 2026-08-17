@@ -1,0 +1,166 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "name": "Akku",
+      "priceText": "Alk. 120 €",
+      "sortOrder": 1
+    },
+    {
+      "id": 2,
+      "name": "Hinauspalvelu",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 2
+    },
+    {
+      "id": 3,
+      "name": "Huolto",
+      "priceText": "Alk. 149 €",
+      "sortOrder": 3
+    },
+    {
+      "id": 4,
+      "name": "Ilmastointi",
+      "priceText": "Alk. 89 €",
+      "sortOrder": 4
+    },
+    {
+      "id": 5,
+      "name": "Jakohihna",
+      "priceText": "Alk. 390 €",
+      "sortOrder": 5
+    },
+    {
+      "id": 6,
+      "name": "Jarrut",
+      "priceText": "Alk. 180 €",
+      "sortOrder": 6
+    },
+    {
+      "id": 7,
+      "name": "Jousitus ja iskunvaimentimet",
+      "priceText": "Alk. 220 €",
+      "sortOrder": 7
+    },
+    {
+      "id": 8,
+      "name": "Katsastus",
+      "priceText": "Alk. 75 €",
+      "sortOrder": 8
+    },
+    {
+      "id": 9,
+      "name": "Katsastushuolto",
+      "priceText": "Alk. 99 €",
+      "sortOrder": 9
+    },
+    {
+      "id": 10,
+      "name": "Katsastuskorjaus",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 10
+    },
+    {
+      "id": 11,
+      "name": "Kori- ja vauriokorjaus",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 11
+    },
+    {
+      "id": 12,
+      "name": "Kytkin",
+      "priceText": "Alk. 650 €",
+      "sortOrder": 12
+    },
+    {
+      "id": 13,
+      "name": "Laakerit ja akselisto",
+      "priceText": "Alk. 190 €",
+      "sortOrder": 13
+    },
+    {
+      "id": 14,
+      "name": "Lisävarusteet",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 14
+    },
+    {
+      "id": 15,
+      "name": "Lohkolämmitin",
+      "priceText": "Alk. 180 €",
+      "sortOrder": 15
+    },
+    {
+      "id": 16,
+      "name": "Moottori",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 16
+    },
+    {
+      "id": 17,
+      "name": "Muu työ",
+      "priceText": "Sopimuksen mukaan",
+      "sortOrder": 17
+    },
+    {
+      "id": 19,
+      "name": "Ohjaus",
+      "priceText": "Alk. 150 €",
+      "sortOrder": 19
+    },
+    {
+      "id": 20,
+      "name": "Öljynvaihto",
+      "priceText": "Alk. 69 €",
+      "sortOrder": 20
+    },
+    {
+      "id": 21,
+      "name": "Pakoputkisto",
+      "priceText": "Alk. 120 €",
+      "sortOrder": 21
+    },
+    {
+      "id": 22,
+      "name": "Renkaat",
+      "priceText": "Alk. 25 € / kpl",
+      "sortOrder": 22
+    },
+    {
+      "id": 23,
+      "name": "Ruostekorjaus",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 23
+    },
+    {
+      "id": 24,
+      "name": "Ruostesuojaus",
+      "priceText": "Alk. 290 €",
+      "sortOrder": 24
+    },
+    {
+      "id": 25,
+      "name": "Sähkötyöt",
+      "priceText": "Alk. 95 €",
+      "sortOrder": 25
+    },
+    {
+      "id": 26,
+      "name": "Valot",
+      "priceText": "Alk. 45 €",
+      "sortOrder": 26
+    },
+    {
+      "id": 27,
+      "name": "Vianhaku",
+      "priceText": "Alk. 79 €",
+      "sortOrder": 27
+    },
+    {
+      "id": 28,
+      "name": "Vikakoodien luku",
+      "priceText": "Alk. 39 €",
+      "sortOrder": 28
+    }
+  ]
+}

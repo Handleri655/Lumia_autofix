@@ -19,7 +19,7 @@ npm run dev
 
 Oletussalasana on `.env`-tiedoston `ADMIN_PASSWORD` (esim. `vaihda-tama`).
 
-## Tuotanto
+## Tuotanto (oma palvelin)
 
 ```bash
 npm run build
@@ -28,6 +28,16 @@ npm start
 
 Palvelin tarjoilee buildatun sivuston, adminin ja API:n samasta portista (`PORT`, oletus 3001). Tietokanta: `data/lumia.db`.
 
+## Vercel
+
+Vercelissä julkinen sivu lukee palvelut ja tarjoukset API-reitistä / staattisesta katalogista (`public/data/`).
+
+```bash
+npm run export-catalog   # synkkaa SQLite → JSON ennen deployta
+git push
+```
+
+**Huom:** Admin-tallennus (SQLite) toimii täysin omalla Node-palvelimella. Vercelissä hinnat/tarjoukset päivittyvät, kun ajetaan `export-catalog` ja deployataan uudelleen.
 ## Admin
 
 1. Avaa `/admin`

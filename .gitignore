@@ -1,6 +1,7 @@
 node_modules/
 dist/
-data/
+data/*
+!data/catalog.json
 .DS_Store
 *.local
 .env

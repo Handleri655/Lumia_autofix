@@ -1,0 +1,12 @@
+{
+  "offers": [
+    {
+      "id": 5,
+      "title": "Ilmastointihuolto",
+      "description": "Ilmastointihuolto R134a 89 € (sisältää 100 g kylmäainetta R134a, öljyt, UV-aineen ja työn). Ylimenevä kylmäaine R134a +17 €/100 g.\n\nIlmastointihuolto R1234yf 110 € (sisältää 100 g kylmäainetta R1234yf, öljyt, UV-aineen ja työn). Ylimenevä kylmäaine R1234yf +27 €/100 g.\n\nHinta riippuu siitä, kumpi kylmäaine autossasi on.",
+      "priceText": "Alk. 89 €",
+      "active": true,
+      "sortOrder": 1
+    }
+  ]
+}

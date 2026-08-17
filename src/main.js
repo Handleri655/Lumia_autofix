@@ -3,11 +3,22 @@ const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").match
 
 const SERVICES_PREVIEW = 12;
 
+async function fetchJson(url) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  return res.json();
+}
+
 async function fetchServices() {
   try {
-    const res = await fetch("/api/services");
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await fetchJson("/api/services");
+    if (Array.isArray(data.services) && data.services.length) return data.services;
+  } catch (err) {
+    console.warn("API-palvelut epäonnistuivat, kokeillaan staattista katalogia:", err);
+  }
+
+  try {
+    const data = await fetchJson("/data/services.json");
     return Array.isArray(data.services) ? data.services : [];
   } catch (err) {
     console.error("Palveluiden lataus epäonnistui:", err);
@@ -17,9 +28,14 @@ async function fetchServices() {
 
 async function fetchOffers() {
   try {
-    const res = await fetch("/api/offers");
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
+    const data = await fetchJson("/api/offers");
+    if (Array.isArray(data.offers)) return data.offers;
+  } catch (err) {
+    console.warn("API-tarjoukset epäonnistuivat, kokeillaan staattista katalogia:", err);
+  }
+
+  try {
+    const data = await fetchJson("/data/offers.json");
     return Array.isArray(data.offers) ? data.offers : [];
   } catch (err) {
     console.error("Tarjousten lataus epäonnistui:", err);
