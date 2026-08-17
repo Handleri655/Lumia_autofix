@@ -32,13 +32,18 @@ Palvelin tarjoilee buildatun sivuston, adminin ja API:n samasta portista (`PORT`
 
 Vercelissä julkinen sivu lukee palvelut ja tarjoukset API-reitistä / staattisesta katalogista (`public/data/`).
 
-```bash
-npm run export-catalog   # synkkaa SQLite → JSON ennen deployta
-git push
-```
+### Ympäristömuuttujat (Vercel → Settings → Environment Variables)
 
-**Huom:** Admin-tallennus (SQLite) toimii täysin omalla Node-palvelimella. Vercelissä hinnat/tarjoukset päivittyvät, kun ajetaan `export-catalog` ja deployataan uudelleen.
-## Admin
+1. `ADMIN_PASSWORD` — admin-kirjautumisen salasana (**pakollinen**)
+2. `BLOB_READ_WRITE_TOKEN` — Vercel Blob -token admin-tallennukseen  
+   (Vercel → Storage → Create Blob Store → token kopioituu projektiin)
+
+Ilman Blob-tokenia kirjautuminen toimii, mutta tallennus Vercelissä ei onnistu.
+
+```bash
+npm run export-catalog   # synkkaa SQLite → JSON ennen deployta (valinnainen)
+git push
+```## Admin
 
 1. Avaa `/admin`
 2. Kirjaudu salasanalla
