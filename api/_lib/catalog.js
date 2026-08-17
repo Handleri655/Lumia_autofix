@@ -12,8 +12,13 @@ function seedCatalog() {
 }
 
 function blobEnabled() {
-  // Vercelissä Blob-store + OIDC riittää; lokaalisti tarvitaan token
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.VERCEL);
+  // Private Blob Vercelissä: BLOB_STORE_ID + OIDC (VERCEL_OIDC_TOKEN)
+  // Tai vanha tapa: BLOB_READ_WRITE_TOKEN
+  return Boolean(
+    process.env.BLOB_STORE_ID ||
+      process.env.BLOB_READ_WRITE_TOKEN ||
+      process.env.VERCEL,
+  );
 }
 
 function blobOptions(extra = {}) {
@@ -23,6 +28,9 @@ function blobOptions(extra = {}) {
   };
   if (process.env.BLOB_READ_WRITE_TOKEN) {
     options.token = process.env.BLOB_READ_WRITE_TOKEN;
+  }
+  if (process.env.BLOB_STORE_ID) {
+    options.storeId = process.env.BLOB_STORE_ID;
   }
   return options;
 }
