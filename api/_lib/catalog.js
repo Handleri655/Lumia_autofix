@@ -11,6 +11,22 @@ function seedCatalog() {
   return { services: [], offers: [] };
 }
 
+function blobEnabled() {
+  // Vercelissä Blob-store + OIDC riittää; lokaalisti tarvitaan token
+  return Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.VERCEL);
+}
+
+function blobOptions(extra = {}) {
+  const options = {
+    access: "private",
+    ...extra,
+  };
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    options.token = process.env.BLOB_READ_WRITE_TOKEN;
+  }
+  return options;
+}
+
 function readLocalCatalog() {
   try {
     if (!fs.existsSync(CATALOG_PATH)) return seedCatalog();
@@ -42,44 +58,60 @@ function writeLocalCatalog(catalog) {
   );
 }
 
+async function streamToString(stream) {
+  if (!stream) return "";
+  if (typeof stream.text === "function") return stream.text();
+
+  const chunks = [];
+  for await (const chunk of stream) {
+    chunks.push(typeof chunk === "string" ? Buffer.from(chunk) : chunk);
+  }
+  return Buffer.concat(chunks).toString("utf8");
+}
+
 async function readBlobCatalog() {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) return null;
+  if (!blobEnabled()) return null;
 
   try {
-    const { list } = await import("@vercel/blob");
-    const result = await list({ prefix: BLOB_PATHNAME, limit: 10, token });
-    const blob = result.blobs.find((b) => b.pathname === BLOB_PATHNAME) || result.blobs[0];
-    if (!blob?.url) return null;
-    const res = await fetch(blob.url, { cache: "no-store" });
-    if (!res.ok) return null;
-    const raw = await res.json();
+    const { get } = await import("@vercel/blob");
+    const result = await get(
+      BLOB_PATHNAME,
+      blobOptions({ useCache: false }),
+    );
+
+    if (!result || result.statusCode !== 200) return null;
+
+    const text = await streamToString(result.stream);
+    if (!text) return null;
+    const raw = JSON.parse(text);
     return {
       services: Array.isArray(raw.services) ? raw.services : [],
       offers: Array.isArray(raw.offers) ? raw.offers : [],
     };
   } catch (err) {
-    console.warn("Blob-luku epäonnistui:", err.message);
+    // Ensimmäisellä kerralla blobia ei vielä ole — se on ok
+    console.warn("Blob-luku:", err.message);
     return null;
   }
 }
 
 async function writeBlobCatalog(catalog) {
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  if (!token) {
+  if (!blobEnabled()) {
     throw new Error(
-      "Tallennus Vercelissä vaatii BLOB_READ_WRITE_TOKEN-ympäristömuuttujan (Vercel → Storage → Blob).",
+      "Tallennus Vercelissä vaatii Blob-storen (yhdistä projektiin) tai BLOB_READ_WRITE_TOKEN-muuttujan.",
     );
   }
 
   const { put } = await import("@vercel/blob");
-  await put(BLOB_PATHNAME, JSON.stringify(catalog, null, 2), {
-    access: "public",
-    contentType: "application/json",
-    addRandomSuffix: false,
-    allowOverwrite: true,
-    token,
-  });
+  await put(
+    BLOB_PATHNAME,
+    JSON.stringify(catalog, null, 2),
+    blobOptions({
+      contentType: "application/json",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+    }),
+  );
 }
 
 export async function getCatalog() {
@@ -94,11 +126,11 @@ export async function saveCatalog(catalog) {
     offers: Array.isArray(catalog.offers) ? catalog.offers : [],
   };
 
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
+  if (blobEnabled()) {
     await writeBlobCatalog(normalized);
   } else if (process.env.VERCEL) {
     throw new Error(
-      "Tallennus Vercelissä vaatii BLOB_READ_WRITE_TOKEN-ympäristömuuttujan (Vercel → Storage → Blob).",
+      "Tallennus Vercelissä vaatii Blob-storen. Yhdistä lumia-autofix-blob projektiin Vercelissä.",
     );
   } else {
     writeLocalCatalog(normalized);

@@ -35,11 +35,12 @@ Vercelissä julkinen sivu lukee palvelut ja tarjoukset API-reitistä / staattise
 ### Ympäristömuuttujat (Vercel → Settings → Environment Variables)
 
 1. `ADMIN_PASSWORD` — admin-kirjautumisen salasana (**pakollinen**)
-2. `BLOB_READ_WRITE_TOKEN` — Vercel Blob -token admin-tallennukseen  
-   (Vercel → Storage → Create Blob Store → token kopioituu projektiin)
+2. Blob-store `lumia-autofix-blob` yhdistettynä projektiin  
+   (Storage → Blob → Connect to Project). Token/`BLOB_READ_WRITE_TOKEN` tulee yleensä automaattisesti.
 
-Ilman Blob-tokenia kirjautuminen toimii, mutta tallennus Vercelissä ei onnistu.
+Private Blob käy — katalogi luetaan/kirjoitetaan palvelimella (`get` / `put`, access: private).
 
+Kun Blob on kytketty: adminissa tallennettu hinta näkyy julkisella sivulla heti (ilman uutta deployta).
 ```bash
 npm run export-catalog   # synkkaa SQLite → JSON ennen deployta (valinnainen)
 git push
