@@ -1,3 +1,7 @@
+import { inject } from "@vercel/analytics";
+
+inject();
+
 const CONTACT_EMAIL = "info@lumiaautofix.fi";
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
