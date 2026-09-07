@@ -126,7 +126,7 @@ export function activeOffers(catalog) {
   return (catalog.offers || []).filter((offer) => offer.active !== false);
 }
 
-/** Migroi vanha "Jarrut" → Etujarrut + Takajarrut */
+/** Migroi palvelulistaa (jarrut + renkaiden vaihto) */
 export function migrateServices(services) {
   const list = Array.isArray(services) ? [...services] : [];
   const withoutJarrut = list.filter((row) => row.name !== "Jarrut");
@@ -147,6 +147,14 @@ export function migrateServices(services) {
       id: ++maxId,
       name: "Takajarrut",
       priceText: "Pyydä tarjous",
+      sortOrder: ++maxOrder,
+    });
+  }
+  if (!names.has("Renkaiden vaihto")) {
+    withoutJarrut.push({
+      id: ++maxId,
+      name: "Renkaiden vaihto",
+      priceText: "Alk. 35 €",
       sortOrder: ++maxOrder,
     });
   }

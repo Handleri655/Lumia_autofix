@@ -22,6 +22,7 @@ export const SEED_SERVICES = [
   { name: "Öljynvaihto", price_text: "Alk. 69 €" },
   { name: "Pakoputkisto", price_text: "Alk. 120 €" },
   { name: "Renkaat", price_text: "Alk. 25 € / kpl" },
+  { name: "Renkaiden vaihto", price_text: "Alk. 35 €" },
   { name: "Ruostekorjaus", price_text: "Pyydä tarjous" },
   { name: "Ruostesuojaus", price_text: "Alk. 290 €" },
   { name: "Sähkötyöt", price_text: "Alk. 95 €" },

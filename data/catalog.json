@@ -167,6 +167,12 @@
       "name": "Takajarrut",
       "priceText": "Pyydä tarjous",
       "sortOrder": 30
+    },
+    {
+      "id": 59,
+      "name": "Renkaiden vaihto",
+      "priceText": "Alk. 35 €",
+      "sortOrder": 31
     }
   ],
   "offers": [
