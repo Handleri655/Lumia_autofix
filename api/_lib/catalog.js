@@ -159,9 +159,32 @@ export function migrateServices(services) {
     });
   }
 
-  return withoutJarrut.map((row) => {
+  // Vanha "Katsastus" → Katsastustarkastus
+  const withoutOldKatsastus = withoutJarrut.filter((row) => row.name !== "Katsastus");
+  const namesAfter = new Set(withoutOldKatsastus.map((row) => row.name));
+  maxId = Math.max(0, ...withoutOldKatsastus.map((row) => Number(row.id) || 0));
+  maxOrder = Math.max(0, ...withoutOldKatsastus.map((row) => Number(row.sortOrder) || 0));
+
+  if (!namesAfter.has("Katsastustarkastus")) {
+    withoutOldKatsastus.push({
+      id: ++maxId,
+      name: "Katsastustarkastus",
+      priceText: "Alk. 60 €",
+      note: "Ei sisällä katsastukseen vientiä",
+      sortOrder: ++maxOrder,
+    });
+  }
+
+  return withoutOldKatsastus.map((row) => {
     if (row.name === "Etujarrut" || row.name === "Takajarrut") {
       return { ...row, priceText: "Pyydä tarjous" };
+    }
+    if (row.name === "Katsastustarkastus") {
+      return {
+        ...row,
+        priceText: "Alk. 60 €",
+        note: "Ei sisällä katsastukseen vientiä",
+      };
     }
     if (row.name === "Katsastushuolto") {
       return {

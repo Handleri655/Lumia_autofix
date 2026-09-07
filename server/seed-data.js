@@ -8,7 +8,11 @@ export const SEED_SERVICES = [
   { name: "Etujarrut", price_text: "Pyydä tarjous" },
   { name: "Takajarrut", price_text: "Pyydä tarjous" },
   { name: "Jousitus ja iskunvaimentimet", price_text: "Alk. 220 €" },
-  { name: "Katsastus", price_text: "Alk. 75 €" },
+  {
+    name: "Katsastustarkastus",
+    price_text: "Alk. 60 €",
+    note: "Ei sisällä katsastukseen vientiä",
+  },
   {
     name: "Katsastushuolto",
     price_text: "Alk. 90 €",

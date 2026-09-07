@@ -57,10 +57,10 @@
       "sortOrder": 8
     },
     {
-      "id": 8,
-      "name": "Katsastus",
-      "priceText": "Alk. 75 €",
-      "note": "",
+      "id": 89,
+      "name": "Katsastustarkastus",
+      "priceText": "Alk. 60 €",
+      "note": "Ei sisällä katsastukseen vientiä",
       "sortOrder": 9
     },
     {
