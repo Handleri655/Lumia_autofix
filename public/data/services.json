@@ -31,12 +31,6 @@
       "sortOrder": 5
     },
     {
-      "id": 6,
-      "name": "Jarrut",
-      "priceText": "Alk. 180 €",
-      "sortOrder": 6
-    },
-    {
       "id": 7,
       "name": "Jousitus ja iskunvaimentimet",
       "priceText": "Alk. 220 €",
@@ -161,6 +155,18 @@
       "name": "Vikakoodien luku",
       "priceText": "Alk. 39 €",
       "sortOrder": 28
+    },
+    {
+      "id": 57,
+      "name": "Etujarrut",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 29
+    },
+    {
+      "id": 58,
+      "name": "Takajarrut",
+      "priceText": "Pyydä tarjous",
+      "sortOrder": 30
     }
   ]
 }

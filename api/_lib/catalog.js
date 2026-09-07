@@ -122,15 +122,55 @@ async function writeBlobCatalog(catalog) {
   );
 }
 
+export function activeOffers(catalog) {
+  return (catalog.offers || []).filter((offer) => offer.active !== false);
+}
+
+/** Migroi vanha "Jarrut" → Etujarrut + Takajarrut */
+export function migrateServices(services) {
+  const list = Array.isArray(services) ? [...services] : [];
+  const withoutJarrut = list.filter((row) => row.name !== "Jarrut");
+  const names = new Set(withoutJarrut.map((row) => row.name));
+  let maxId = Math.max(0, ...withoutJarrut.map((row) => Number(row.id) || 0));
+  let maxOrder = Math.max(0, ...withoutJarrut.map((row) => Number(row.sortOrder) || 0));
+
+  if (!names.has("Etujarrut")) {
+    withoutJarrut.push({
+      id: ++maxId,
+      name: "Etujarrut",
+      priceText: "Pyydä tarjous",
+      sortOrder: ++maxOrder,
+    });
+  }
+  if (!names.has("Takajarrut")) {
+    withoutJarrut.push({
+      id: ++maxId,
+      name: "Takajarrut",
+      priceText: "Pyydä tarjous",
+      sortOrder: ++maxOrder,
+    });
+  }
+
+  return withoutJarrut.map((row) => {
+    if (row.name === "Etujarrut" || row.name === "Takajarrut") {
+      return { ...row, priceText: "Pyydä tarjous" };
+    }
+    return row;
+  });
+}
+
 export async function getCatalog() {
   const fromBlob = await readBlobCatalog();
-  if (fromBlob) return fromBlob;
-  return readLocalCatalog();
+  const base = fromBlob || readLocalCatalog();
+  return {
+    services: migrateServices(base.services),
+    offers: Array.isArray(base.offers) ? base.offers : [],
+  };
 }
 
 export async function saveCatalog(catalog) {
   const normalized = {
-    services: Array.isArray(catalog.services) ? catalog.services : [],
+    services: migrateServices(catalog.services),
     offers: Array.isArray(catalog.offers) ? catalog.offers : [],
   };
 
@@ -145,8 +185,4 @@ export async function saveCatalog(catalog) {
   }
 
   return normalized;
-}
-
-export function activeOffers(catalog) {
-  return (catalog.offers || []).filter((offer) => offer.active !== false);
 }
