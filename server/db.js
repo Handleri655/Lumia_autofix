@@ -16,6 +16,7 @@ export function getDb() {
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL UNIQUE,
       price_text TEXT NOT NULL DEFAULT '',
+      note TEXT NOT NULL DEFAULT '',
       sort_order INTEGER NOT NULL DEFAULT 0,
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
@@ -30,6 +31,12 @@ export function getDb() {
       updated_at TEXT NOT NULL DEFAULT (datetime('now'))
     );
   `);
+
+  const serviceCols = db.prepare("PRAGMA table_info(services)").all().map((c) => c.name);
+  if (!serviceCols.includes("note")) {
+    db.exec(`ALTER TABLE services ADD COLUMN note TEXT NOT NULL DEFAULT ''`);
+  }
+
   return db;
 }
 

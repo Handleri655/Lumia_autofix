@@ -68,7 +68,7 @@ app.get("/api/health", (_req, res) => {
 app.get("/api/services", (_req, res) => {
   const rows = db
     .prepare(
-      `SELECT id, name, price_text AS priceText, sort_order AS sortOrder
+      `SELECT id, name, price_text AS priceText, note, sort_order AS sortOrder
        FROM services
        ORDER BY sort_order ASC, name ASC`,
     )
@@ -252,7 +252,7 @@ app.put("/api/admin/services", requireAuth, (req, res) => {
 
   const rows = db
     .prepare(
-      `SELECT id, name, price_text AS priceText, sort_order AS sortOrder
+      `SELECT id, name, price_text AS priceText, note, sort_order AS sortOrder
        FROM services
        ORDER BY sort_order ASC, name ASC`,
     )

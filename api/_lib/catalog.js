@@ -163,7 +163,14 @@ export function migrateServices(services) {
     if (row.name === "Etujarrut" || row.name === "Takajarrut") {
       return { ...row, priceText: "Pyydä tarjous" };
     }
-    return row;
+    if (row.name === "Katsastushuolto") {
+      return {
+        ...row,
+        priceText: "Alk. 90 €",
+        note: "Katsastukseen vienti ja tuonti 130 €",
+      };
+    }
+    return { ...row, note: row.note || "" };
   });
 }
 

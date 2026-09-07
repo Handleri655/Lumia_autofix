@@ -4,10 +4,13 @@ import { SEED_OFFERS, SEED_SERVICES } from "./seed-data.js";
 const db = getDb();
 
 const insertService = db.prepare(`
-  INSERT INTO services (name, price_text, sort_order, updated_at)
-  VALUES (@name, @price_text, @sort_order, datetime('now'))
+  INSERT INTO services (name, price_text, note, sort_order, updated_at)
+  VALUES (@name, @price_text, @note, @sort_order, datetime('now'))
   ON CONFLICT(name) DO UPDATE SET
-    sort_order = excluded.sort_order
+    price_text = excluded.price_text,
+    note = excluded.note,
+    sort_order = excluded.sort_order,
+    updated_at = datetime('now')
 `);
 
 const offerCount = db.prepare("SELECT COUNT(*) AS n FROM offers").get().n;
@@ -22,6 +25,7 @@ const tx = db.transaction(() => {
     insertService.run({
       name: row.name,
       price_text: row.price_text,
+      note: row.note || "",
       sort_order: index + 1,
     });
   });

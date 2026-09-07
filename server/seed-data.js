@@ -9,7 +9,11 @@ export const SEED_SERVICES = [
   { name: "Takajarrut", price_text: "Pyydä tarjous" },
   { name: "Jousitus ja iskunvaimentimet", price_text: "Alk. 220 €" },
   { name: "Katsastus", price_text: "Alk. 75 €" },
-  { name: "Katsastushuolto", price_text: "Alk. 99 €" },
+  {
+    name: "Katsastushuolto",
+    price_text: "Alk. 90 €",
+    note: "Katsastukseen vienti ja tuonti 130 €",
+  },
   { name: "Katsastuskorjaus", price_text: "Pyydä tarjous" },
   { name: "Kori- ja vauriokorjaus", price_text: "Pyydä tarjous" },
   { name: "Kytkin", price_text: "Alk. 650 €" },

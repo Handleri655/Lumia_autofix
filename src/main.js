@@ -118,15 +118,26 @@ async function fillServices() {
     const li = document.createElement("li");
     if (index >= SERVICES_PREVIEW) li.classList.add("is-extra");
 
+    const copy = document.createElement("div");
+    copy.className = "service-copy";
+
     const name = document.createElement("span");
     name.className = "service-name";
     name.textContent = item.name;
+    copy.appendChild(name);
+
+    if (item.note) {
+      const note = document.createElement("span");
+      note.className = "service-note";
+      note.textContent = item.note;
+      copy.appendChild(note);
+    }
 
     const price = document.createElement("span");
     price.className = "service-price";
     price.textContent = item.priceText || "Pyydä tarjous";
 
-    li.append(name, price);
+    li.append(copy, price);
     frag.appendChild(li);
   });
   el.appendChild(frag);

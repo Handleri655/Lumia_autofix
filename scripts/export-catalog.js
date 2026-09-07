@@ -12,6 +12,7 @@ function fromSeed() {
       id: index + 1,
       name: row.name,
       priceText: row.price_text,
+      note: row.note || "",
       sortOrder: index + 1,
     })),
     offers: SEED_OFFERS.map((row, index) => ({
@@ -35,10 +36,11 @@ function fromSqlite() {
       const db = new Database(dbPath, { readonly: true });
       const services = db
         .prepare(
-          `SELECT id, name, price_text AS priceText, sort_order AS sortOrder
+          `SELECT id, name, price_text AS priceText, note, sort_order AS sortOrder
            FROM services ORDER BY sort_order ASC, name ASC`,
         )
-        .all();
+        .all()
+        .map((row) => ({ ...row, note: row.note || "" }));
       const offers = db
         .prepare(
           `SELECT id, title, description, price_text AS priceText, is_active AS active, sort_order AS sortOrder
